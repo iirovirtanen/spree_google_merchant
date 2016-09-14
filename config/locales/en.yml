@@ -24,3 +24,6 @@ en:
         google_merchant_brand: Brand Name
         google_merchant_product_category: Google Product Category
         google_merchant_product_type: Product Type
+
+  in_stock: "in stock"
+  out_of_stock: "out of stock"
