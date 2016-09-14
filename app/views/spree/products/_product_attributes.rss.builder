@@ -17,10 +17,10 @@ xml.tag! "g:id", variant.product.id
 xml.tag! "g:title", variant.product.name
 xml.tag! "g:description", variant.product.description
 xml.tag! "g:link", @production_domain + 'products/' + variant.product.slug
-xml.tag! "g:image_link", variant.product.images.first.attachment.url(:product) unless variant.product.images.empty?
+xml.tag! "g:image_link", @production_domain + variant.product.images.first.attachment.url(:product) unless variant.product.images.empty?
 xml.tag! "g:price", variant.price.to_s + ' EUR'
 xml.tag! "g:condition", variant.product.property("Condition")
-xml.tag! "g:availability", Spree::Stock::Quantifier.new(variant).total_on_hand > 0 ? 'in stock' : 'out of stock'
+xml.tag! "g:availability", Spree::Stock::Quantifier.new(variant).total_on_hand > 0 ? t('in_stock', locale: params[:locale]) : t('out_of_stock', locale: params[:locale])
 xml.tag! "g:gtin", variant.product.property("GTIN")
 xml.tag! "g:brand", google_merchant_brand.name if google_merchant_brand
 
