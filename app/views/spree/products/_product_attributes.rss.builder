@@ -13,10 +13,12 @@ case shipping_category
     shipping_price = "8.9 EUR"
 end
 
+url_locale = "?locale=#{params[:locale]}" if params[:locale]
+
 xml.tag! "g:id", variant.product.id
 xml.tag! "g:title", variant.product.name
 xml.tag! "g:description", variant.product.description
-xml.tag! "g:link", @production_domain + 'products/' + variant.product.slug
+xml.tag! "g:link", @production_domain + 'products/' + variant.product.slug + url_locale.to_s
 xml.tag! "g:image_link", @production_domain + variant.product.images.first.attachment.url(:product) unless variant.product.images.empty?
 xml.tag! "g:price", variant.price.to_s + ' EUR'
 xml.tag! "g:condition", variant.product.property("Condition")
